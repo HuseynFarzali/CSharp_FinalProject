@@ -10,9 +10,9 @@ namespace MarketApplication.Services
 {
     public class MarketService
     {
-        private static Market market = new();
+        public static readonly Market market = new();
 
-        public static void ProductServiceMenu()
+        /*public static void ProductServiceMenu()
         {
             Console.Clear();
             int option;
@@ -131,6 +131,6 @@ namespace MarketApplication.Services
 
             }
             while (option != 0);
-        }
+        }*/
     }
 }

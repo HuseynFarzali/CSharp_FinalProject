@@ -24,7 +24,7 @@ namespace MarketApplication.Data.Concrete.Models
 
         #region Constructors
         /// <summary>
-        /// Simple constructor that instantiate the properties of the marke that described above.
+        /// Simple constructor that instantiate the properties of the market that described above.
         /// </summary>
         public Market()
         {
@@ -136,7 +136,7 @@ namespace MarketApplication.Data.Concrete.Models
         }
 
         /// <summary>
-        /// Same as the above-mentioned method but not takes single sale object, collection of them
+        /// Same as the above-mentioned method but takes collection of them instead of single sale object
         /// </summary>
         /// <param name="sales">Array of the sales that should be added to the market sale history</param>
         /// <returns>An array of ID values whose indexes correspond to those of <paramref name="sales"/></returns>
@@ -234,7 +234,7 @@ namespace MarketApplication.Data.Concrete.Models
                 }
             }
 
-            // We check if the refund operation is finished succesfully, otherwise we throw an ArgumentException.
+            // We check if the refund operation is finished successfully, otherwise we throw an ArgumentException.
             if (!flag)
                 throw new ArgumentException($"There is no product: {foundProduct.GetCode()}#{foundProduct.ID} sold in the given sale: sale-#{foundSale.ID}");
         }
@@ -249,7 +249,7 @@ namespace MarketApplication.Data.Concrete.Models
             Sale foundSale = SaleList.FirstOrDefault(s => s.ID == saleId)
                 ?? throw new ArgumentException($"There is no matching sale in the sale-list by the given ID: {saleId}");
 
-            // We increase the quantity of product which is bought in the sale, one-by-one.
+            // We increase the quantity of each product which is bought in the sale, one-by-one.
             foreach (SaleItem item in foundSale.SaleItems)
             {
                 item.Product.Quantity += item.BoughtCount;

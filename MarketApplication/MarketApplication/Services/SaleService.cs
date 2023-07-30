@@ -3,10 +3,227 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarketApplication.Data.Concrete.Models;
 
 namespace MarketApplication.Services
 {
-    internal class SaleService
+    public class SaleService
     {
+        public static readonly Market Market = MarketService.market;
+
+        public static void AddSale()
+        {
+            try
+            {
+                Console.Write("Enter the sale date [format: MM/dd/yyyy]: ");
+                DateTime date = DateTime.ParseExact(Console.ReadLine(), "MM/dd/yyyy", null);
+
+                Console.Write("How many products do you want to purchase?:  ");
+                int number = int.Parse(Console.ReadLine());
+
+                SaleItem[] boughtItems = new SaleItem[number];
+
+                for (int i = 0; i < number; i++)
+                {
+                    Console.Write($"Enter the ID of the {i + 1}.product: ");
+                    int productId = int.Parse(Console.ReadLine());
+
+                    Product product = Market.GetProductById(productId);
+
+                    Console.Write($"Enter the count of this product you want to buy: ");
+                    int count = int.Parse(Console.ReadLine());
+
+                    boughtItems[i] = new SaleItem(product, count);
+                }
+
+                Sale sale = new Sale(date, boughtItems);
+
+                Market.AddSale(sale);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void RefundProductFromSale()
+        {
+            try
+            {
+                Console.Write("Enter the sale ID you want to apply for a refund: ");
+                int saleId = int.Parse(Console.ReadLine());
+                Market.GetSaleById(saleId);
+
+                Console.Write("Enter the product ID from the specified sale you want to refund: ");
+                int productId = int.Parse(Console.ReadLine());
+                Market.GetProductById(productId);
+
+                if (!Market.SaleList.Any(
+                        sale => sale.SaleItems.Any(
+                            sItem => sItem.Product.ID == productId)))
+                {
+                    throw new ArgumentException($"Specified product ID value is not valid for the specified sale ID value, as there is no any product in the sale by the given product and sale ID values.");
+                }
+
+                Console.Write("How many of this product do you want to refund: [be sure that this number is less than or equal to the bought quantity]: ");
+                int quantityToBeRefunded = int.Parse(Console.ReadLine());
+
+                Market.RefundProduct(saleId, productId, quantityToBeRefunded);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void DeleteSale()
+        {
+            try
+            {
+                Console.Write("Enter the ID of the sale that you want to refund/remove entirely: ");
+                int saleId = int.Parse(Console.ReadLine());
+
+                Market.RefundEntireSale(saleId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void ShowAllSales()
+        {
+            try
+            {
+                var sales = Market.SaleList;
+
+                if (!sales.Any())
+                    throw new ArgumentException("There is no sale to be shown in the sale-list of the market.");
+
+                foreach (var sale in sales)
+                {
+                    Console.WriteLine($"\tSale #{sale.ID}");
+                    foreach (var item in sale.SaleItems)
+                    {
+                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void ShowSalesByDateRange()
+        {
+            try
+            {
+                Console.Write("Enter the start date [format: MM/dd/yyyy]: ");
+                DateTime startDate = DateTime.ParseExact(Console.ReadLine(), "MM/dd/yyyy", null);
+
+                Console.Write("Enter the end date [format: MM/dd/yyyy]: ");
+                DateTime endDate = DateTime.ParseExact(Console.ReadLine(), "MM/dd/yyyy", null);
+
+                var sales = Market.GetSalesByCriteria(
+                    sale => sale.Date >= startDate && sale.Date <= endDate);
+
+                foreach (var sale in sales)
+                {
+                    Console.WriteLine($"\tSale #{sale.ID}");
+                    foreach (var item in sale.SaleItems)
+                    {
+                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void ShowSalesByPriceRange()
+        {
+            try
+            {
+                Console.Write("Enter the start price: ");
+                decimal startPrice = decimal.Parse(Console.ReadLine());
+
+                Console.Write("Enter the end price: ");
+                decimal endPrice = decimal.Parse(Console.ReadLine());
+
+                var sales = Market.GetSalesByCriteria(
+                    sale => sale.Price >= startPrice && sale.Price <= endPrice);
+
+                foreach (var sale in sales)
+                {
+                    Console.WriteLine($"\tSale #{sale.ID}");
+                    foreach (var item in sale.SaleItems)
+                    {
+                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void ShowSalesByExactDate()
+        {
+            try
+            {
+                Console.Write("Enter the date [format MM/dd/yyyy]: ");
+                DateTime date = DateTime.ParseExact(Console.ReadLine(), "MM/dd/yyyy", null);
+
+                var sales = Market.GetSalesByCriteria(sale =>
+                    sale.Date.Year == date.Year &&
+                    sale.Date.Month == date.Month &&
+                    sale.Date.Day == date.Day);
+
+                foreach (var sale in sales)
+                {
+                    Console.WriteLine($"\tSale #{sale.ID}");
+                    foreach (var item in sale.SaleItems)
+                    {
+                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }
+
+        public static void ShowSaleInfoByID()
+        {
+            try
+            {
+                Console.Write("Enter the ID of the sale to be searched: ");
+                int id = int.Parse(Console.ReadLine());
+
+                Sale sale = Market.GetSaleById(id);
+
+                Console.WriteLine($"\tSale #{sale.ID}");
+                foreach (var item in sale.SaleItems)
+                {
+                    Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
+                }
+                Console.WriteLine();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
