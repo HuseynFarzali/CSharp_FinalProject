@@ -1,0 +1,15 @@
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\MarketApplication.exe
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\MarketApplication.deps.json
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\MarketApplication.runtimeconfig.json
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\MarketApplication.dll
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\MarketApplication.pdb
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.csproj.AssemblyReference.cache
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.AssemblyInfoInputs.cache
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.AssemblyInfo.cs
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.csproj.CoreCompileInputs.cache
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.dll
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\refint\MarketApplication.dll
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.pdb
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.genruntimeconfig.cache
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\ref\MarketApplication.dll

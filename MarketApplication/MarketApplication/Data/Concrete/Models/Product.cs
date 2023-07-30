@@ -8,13 +8,13 @@ using MarketApplication.Data.Concrete.Enumerators;
 
 namespace MarketApplication.Data.Concrete.Models
 {
-    /// <summary>
-    /// <class name="Product">A Simple model representing real-life products used and sold  in markets.</class>
-    /// </summary>
+    /// <class name="Product">
+    /// A Simple model representing real-life products used and sold  in markets
+    /// </class>
     public class Product
     {
         /// <summary>
-        /// <param name="counter">Used for auto-generating ID values for each product (implemented internally, not by user)</param>
+        /// Used for auto-generating ID values for each product (implemented internally, not by user)
         /// </summary>
         private static int counter = 0;
 
@@ -29,6 +29,8 @@ namespace MarketApplication.Data.Concrete.Models
         public int Quantity { get; set; }
         #endregion
 
+
+        #region Constructors
         /// <summary>
         /// Constructor to create a product in the market storage
         /// </summary>
@@ -36,7 +38,6 @@ namespace MarketApplication.Data.Concrete.Models
         /// <param name="productValue">Decimal to represent product value</param>
         /// <param name="productQuantity">Integer to represent how much of this product should exist in the market storage</param>
         /// <param name="productCategory">ProductCategory(enum type) to represent product category</param>
-        #region Constructors
         public Product(
             string productName,
             decimal productValue,
@@ -52,11 +53,11 @@ namespace MarketApplication.Data.Concrete.Models
         }
         #endregion
 
+        #region Methods
         /// <summary>
         /// A simple and informative method that gives information about a product in a single string. Not available for a user, but for the developer.
         /// </summary>
         /// <returns>String that contains all necessary information about the product</returns>
-        #region Methods
         public string GetCode() => $"[p:{Name}|v:{Value}|c:{Category}|q:{Quantity}#{ID}]";
         #endregion
     }
