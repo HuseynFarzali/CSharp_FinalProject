@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace MarketApplication.Data.Concrete.Models
 {
@@ -86,13 +87,11 @@ namespace MarketApplication.Data.Concrete.Models
             var table = new ConsoleTable();
             table.AddColumn(new string[] { "Product ID", "Product Name", "Bought Quantity" });
 
+            Console.WriteLine($"Sale ID: {ID}\tSale Price: {Price}\tSale Date: {$"{Date.Month}/{Date.Day}/{Date.Year}"}");
             foreach (var item in SaleItems)
             {
                 table.AddRow(item.Product.ID, item.Product.Name, item.BoughtCount);
             }
-
-            table.AddColumn(new string[] { "Sale ID", "Sale Date", "Sale Price"});
-            table.AddRow(ID, Date, Price);
 
             table.Write();
         }

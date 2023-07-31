@@ -139,11 +139,6 @@ namespace MarketApplication.Services
 
             foreach (var product in products)
             {
-                if (product.Quantity <= 0)
-                {
-                    Market.ProductList.Remove(product);
-                    continue;
-                }    
                 table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
             }
 
@@ -165,11 +160,6 @@ namespace MarketApplication.Services
 
                 foreach (var product in foundProducts)
                 {
-                    if (product.Quantity <= 0)
-                    {
-                        Market.ProductList.Remove(product);
-                        continue;
-                    }
                     table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
 
@@ -198,11 +188,6 @@ namespace MarketApplication.Services
 
                 foreach (var product in foundProducts)
                 {
-                    if (product.Quantity <= 0)
-                    {
-                        Market.ProductList.Remove(product);
-                        continue;
-                    }
                     table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
 
@@ -234,11 +219,6 @@ namespace MarketApplication.Services
 
                 foreach (var product in foundProducts)
                 {
-                    if (product.Quantity <= 0)
-                    {
-                        Market.ProductList.Remove(product);
-                        continue;
-                    }
                     table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
 

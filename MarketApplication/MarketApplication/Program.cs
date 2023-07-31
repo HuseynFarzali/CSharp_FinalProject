@@ -33,6 +33,8 @@ namespace MarketApplication
                     case 2:
                         MarketService.SaleServiceMenu();
                         break;
+                    case 0:
+                        break;
                     default:
                         Console.WriteLine("No such option.");
                         break;
