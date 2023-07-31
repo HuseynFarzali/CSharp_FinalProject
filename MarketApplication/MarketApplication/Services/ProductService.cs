@@ -8,10 +8,15 @@ using MarketApplication.Data.Concrete.Models;
 
 namespace MarketApplication.Services
 {
+    /// <class name="ProductService">
+    /// A service class designed to make connections between user and the market object concerning the product operations via Console.
+    /// </summary>
     public class ProductService
     {
+        // Inheriting the field of general class MarketService to synchronize product-service and sale-service
         public static readonly Market Market = MarketService.market;
 
+        // Methods below are all functions that prompt user for input via console and conduct appropriate action on market object.
         public static void AddProduct()
         {
             try
@@ -96,7 +101,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void DeleteProduct()
         {
             try
@@ -111,7 +115,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowAllProducts()
         {
             var products = Market.ProductList;
@@ -127,7 +130,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"{product.Name}#{product.ID}");
             }
         }
-
         public static void ShowProductsByCategory()
         {
             try
@@ -148,7 +150,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowProductsByValueRange()
         {
             try
@@ -172,7 +173,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowProductsByName()
         {
             try
