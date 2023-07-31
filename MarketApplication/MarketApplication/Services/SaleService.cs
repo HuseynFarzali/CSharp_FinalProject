@@ -76,7 +76,7 @@ namespace MarketApplication.Services
 
                 Market.RefundProduct(saleId, productId, quantityToBeRefunded);
                 Console.WriteLine("Refund is successful. New sale specifications:");
-                Market.GetSaleById(saleId);
+                Market.GetSaleById(saleId).TablePrint();
 
             }
             catch (Exception ex)
