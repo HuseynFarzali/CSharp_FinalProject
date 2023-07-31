@@ -91,8 +91,8 @@ namespace MarketApplication.Data.Concrete.Models
                 table.AddRow(item.Product.ID, item.Product.Name, item.BoughtCount);
             }
 
-            table.AddColumn(new string[] { "Sale Date", "Sale Price"});
-            table.AddRow(Date, Price);
+            table.AddColumn(new string[] { "Sale ID", "Sale Date", "Sale Price"});
+            table.AddRow(ID, Date, Price);
 
             table.Write();
         }
