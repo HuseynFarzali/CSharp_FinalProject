@@ -42,8 +42,10 @@ namespace MarketApplication.Services
                 }
 
                 Sale sale = new Sale(date, boughtItems);
-
                 Market.AddSale(sale);
+
+                Console.WriteLine("Sale added to the market sale-list with following specifications:");
+                sale.TablePrint();
             }
             catch (Exception ex)
             {
@@ -73,6 +75,8 @@ namespace MarketApplication.Services
                 int quantityToBeRefunded = int.Parse(Console.ReadLine());
 
                 Market.RefundProduct(saleId, productId, quantityToBeRefunded);
+                Console.WriteLine("Refund is successful. New sale specifications:");
+                Market.GetSaleById(saleId);
 
             }
             catch (Exception ex)
@@ -88,6 +92,7 @@ namespace MarketApplication.Services
                 int saleId = int.Parse(Console.ReadLine());
 
                 Market.RefundEntireSale(saleId);
+                Console.WriteLine("Sale deleted successfully.");
             }
             catch (Exception ex)
             {
@@ -105,12 +110,7 @@ namespace MarketApplication.Services
 
                 foreach (var sale in sales)
                 {
-                    Console.WriteLine($"\tSale #{sale.ID}");
-                    foreach (var item in sale.SaleItems)
-                    {
-                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
-                    }
-                    Console.WriteLine();
+                    sale.TablePrint();
                 }
             }
             catch (Exception ex)
@@ -133,12 +133,7 @@ namespace MarketApplication.Services
 
                 foreach (var sale in sales)
                 {
-                    Console.WriteLine($"\tSale #{sale.ID}");
-                    foreach (var item in sale.SaleItems)
-                    {
-                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
-                    }
-                    Console.WriteLine();
+                    sale.TablePrint();
                 }
             }
             catch (Exception ex)
@@ -161,12 +156,7 @@ namespace MarketApplication.Services
 
                 foreach (var sale in sales)
                 {
-                    Console.WriteLine($"\tSale #{sale.ID}");
-                    foreach (var item in sale.SaleItems)
-                    {
-                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
-                    }
-                    Console.WriteLine();
+                    sale.TablePrint();
                 }
             }
             catch (Exception ex)
@@ -188,12 +178,7 @@ namespace MarketApplication.Services
 
                 foreach (var sale in sales)
                 {
-                    Console.WriteLine($"\tSale #{sale.ID}");
-                    foreach (var item in sale.SaleItems)
-                    {
-                        Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
-                    }
-                    Console.WriteLine();
+                    sale.TablePrint();
                 }
             }
             catch (Exception ex)
@@ -210,12 +195,7 @@ namespace MarketApplication.Services
 
                 Sale sale = Market.GetSaleById(id);
 
-                Console.WriteLine($"\tSale #{sale.ID}");
-                foreach (var item in sale.SaleItems)
-                {
-                    Console.WriteLine($"Product: {item.Product.Name}#{item.Product.ID}\tBought Quantity: {item.BoughtCount}");
-                }
-                Console.WriteLine();
+                sale.TablePrint();
             }
             catch (Exception ex)
             {

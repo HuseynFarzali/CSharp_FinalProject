@@ -8,6 +8,9 @@ using MarketApplication.Data.Concrete.Models;
 
 namespace MarketApplication.Services
 {
+    /// <class name="MarketService">
+    /// Class that communicates with the user for product and sale operations. Encapsulates menus for the user and waits for the input. When the expected input type is entered, corresponding actions  are done, however if input is invalid, market-service methods throw and exception or caution-message.
+    /// </summary>
     public class MarketService
     {
         public static readonly Market market = new();
