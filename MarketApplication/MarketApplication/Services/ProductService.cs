@@ -53,15 +53,11 @@ namespace MarketApplication.Services
                 ProductCategory category = (ProductCategory)Enum.Parse(typeof(ProductCategory), Console.ReadLine());
 
                 Product product = new Product(name, value, quantity, category);
+                Market.AddProduct(product);
 
-                int newProductId = Market.AddProduct(product);
+                Console.WriteLine("Product added to the storage of the market with following specifications:");
+                product.TablePrint();
 
-                ConsoleTable table = new ConsoleTable();
-                table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
-                table.AddRow(newProductId, name, value, quantity, category);
-
-                Console.WriteLine("Product added to the market with following specifications:");
-                table.Write();
             }
             catch (Exception ex)
             {
@@ -103,6 +99,9 @@ namespace MarketApplication.Services
                     newValue: newValue,
                     newQuantity: newQuantity,
                     newCategory: newCategory);
+
+                Console.WriteLine("Product information is updated with the following new specifications:");
+                Market.GetProductById(id).TablePrint();
             }
             catch (Exception ex)
             {
@@ -117,6 +116,7 @@ namespace MarketApplication.Services
                 int id = int.Parse(Console.ReadLine());
 
                 Market.RemoveProduct(id);
+                Console.WriteLine("Specified product is removed from the storage.");
             }
             catch (Exception ex)
             {
@@ -133,10 +133,16 @@ namespace MarketApplication.Services
                 return;
             }
 
+            var table = new ConsoleTable();
+
+            table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+
             foreach (var product in products)
             {
-                Console.WriteLine($"{product.Name}#{product.ID}");
+                table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
             }
+
+            table.Write();
         }
         public static void ShowProductsByCategory()
         {
@@ -148,10 +154,16 @@ namespace MarketApplication.Services
                 var foundProducts = Market.GetProductsByCriteria(
                     p => p.Category.Equals(category));
 
+                var table = new ConsoleTable();
+
+                table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+
                 foreach (var product in foundProducts)
                 {
-                    Console.WriteLine($"{product.Name}#{product.ID}");
+                    table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
+
+                table.Write();
             }
             catch (Exception ex)
             {
@@ -171,10 +183,15 @@ namespace MarketApplication.Services
                 var foundProducts = Market.GetProductsByCriteria(
                     p => p.Value >= startValue && p.Value <= endValue);
 
+                var table = new ConsoleTable();
+                table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+
                 foreach (var product in foundProducts)
                 {
-                    Console.WriteLine($"{product.Name}#{product.ID}");
+                    table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
+
+                table.Write();
             }
             catch (Exception ex)
             {
@@ -196,10 +213,16 @@ namespace MarketApplication.Services
                 var foundProducts = Market.GetProductsByCriteria(
                     p => p.Name == name);
 
+                var table = new ConsoleTable();
+
+                table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+
                 foreach (var product in foundProducts)
                 {
-                    Console.WriteLine($"{product.Name}#{product.ID}");
+                    table.AddRow(product.ID, product.Name, product.Value, product.Quantity, product.Category);
                 }
+
+                table.Write();
             }
             catch (Exception ex)
             {
