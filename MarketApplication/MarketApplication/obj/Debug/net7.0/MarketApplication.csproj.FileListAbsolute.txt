@@ -13,3 +13,5 @@ C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\o
 C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.pdb
 C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.genruntimeconfig.cache
 C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\ref\MarketApplication.dll
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\bin\Debug\net7.0\ConsoleTables.dll
+C:\Users\99450\Desktop\CSharp_FinalProject\MarketApplication\MarketApplication\obj\Debug\net7.0\MarketApplication.csproj.CopyComplete

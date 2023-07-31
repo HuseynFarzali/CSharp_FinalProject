@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,27 @@ namespace MarketApplication.Data.Concrete.Models
             }
 
             ID = counter++;
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// A simple method that uses a user-made Nuget package that can print information on the console in a table-form.
+        /// </summary>
+        public void TablePrint()
+        {
+            var table = new ConsoleTable();
+            table.AddColumn(new string[] { "Product ID", "Product Name", "Bought Quantity" });
+
+            foreach (var item in SaleItems)
+            {
+                table.AddRow(item.Product.ID, item.Product.Name, item.BoughtCount);
+            }
+
+            table.AddColumn(new string[] { "Sale Date", "Sale Price"});
+            table.AddRow(Date, Price);
+
+            table.Write();
         }
         #endregion
     }

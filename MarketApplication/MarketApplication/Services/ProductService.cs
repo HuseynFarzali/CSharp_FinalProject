@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleTables;
 using MarketApplication.Data.Concrete.Enumerators;
 using MarketApplication.Data.Concrete.Models;
 
@@ -10,7 +11,7 @@ namespace MarketApplication.Services
 {
     /// <class name="ProductService">
     /// A service class designed to make connections between user and the market object concerning the product operations via Console.
-    /// </summary>
+    /// </class>
     public class ProductService
     {
         // Inheriting the field of general class MarketService to synchronize product-service and sale-service
@@ -53,7 +54,14 @@ namespace MarketApplication.Services
 
                 Product product = new Product(name, value, quantity, category);
 
-                Market.AddProduct(product);
+                int newProductId = Market.AddProduct(product);
+
+                ConsoleTable table = new ConsoleTable();
+                table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+                table.AddRow(newProductId, name, value, quantity, category);
+
+                Console.WriteLine("Product added to the market with following specifications:");
+                table.Write();
             }
             catch (Exception ex)
             {

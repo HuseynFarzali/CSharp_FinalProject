@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ConsoleTables;
 using MarketApplication.Data.Concrete.Enumerators;
 
 namespace MarketApplication.Data.Concrete.Models
@@ -59,6 +60,17 @@ namespace MarketApplication.Data.Concrete.Models
         /// </summary>
         /// <returns>String that contains all necessary information about the product</returns>
         public string GetCode() => $"[p:{Name}|v:{Value}|c:{Category}|q:{Quantity}#{ID}]";
+
+        /// <summary>
+        /// A simple method that uses a user-made Nuget package that can print information on the console in a table-form.
+        /// </summary>
+        public void TablePrint()
+        {
+            ConsoleTable table = new ConsoleTable();
+            table.AddColumn(new string[] { "ID", "Name", "Value", "Quantity", "Category" });
+            table.AddRow(ID, Name, Value, Quantity, Category);
+            table.Write();
+        }
         #endregion
     }
 }

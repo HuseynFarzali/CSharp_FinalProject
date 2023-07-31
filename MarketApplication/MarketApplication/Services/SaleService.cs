@@ -7,10 +7,15 @@ using MarketApplication.Data.Concrete.Models;
 
 namespace MarketApplication.Services
 {
+    /// <class name="SaleService">
+    /// A service class designed to make connections between user and the market object concerning the sale operations via Console.
+    /// </class>
     public class SaleService
     {
+        // Inheriting the field of general class MarketService to synchronize product-service and sale-service.
         public static readonly Market Market = MarketService.market;
 
+        // Methods below are all functions that prompt user for input via console and conduct appropriate action on market object.
         public static void AddSale()
         {
             try
@@ -45,7 +50,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void RefundProductFromSale()
         {
             try
@@ -76,7 +80,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void DeleteSale()
         {
             try
@@ -91,7 +94,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowAllSales()
         {
             try
@@ -116,7 +118,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowSalesByDateRange()
         {
             try
@@ -145,7 +146,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowSalesByPriceRange()
         {
             try
@@ -174,7 +174,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowSalesByExactDate()
         {
             try
@@ -202,7 +201,6 @@ namespace MarketApplication.Services
                 Console.WriteLine($"Exception: {ex.Message}");
             }
         }
-
         public static void ShowSaleInfoByID()
         {
             try
